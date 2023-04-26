@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>工具</title>
+  </head>
+  <body>
+    <div>
+        选择需要查询的文件夹路径
+        <button id="selectFile">选择文件夹</button>
+        <span> E:\tools\node_modules\.store\electron@24.1.2\node_modules\electron\dist\electron.exe</span>
+    </div>
+    <div>
+        选择需要输出结果的路径
+        <button id="selectFile">选择文件夹</button>        
+        <span> E:\tools\node_modules\.store\electron@24.1.2\node_modules\electron\dist\electron.exe</span>
+    </div>
+    <fieldset>
+        <legend>需要查询的格式类型</legend>
+        <div>
+          <input type="checkbox" id="coding" name="interest" value="coding" />
+          <label for="coding">pdf</label>
+        </div>
+        <div>
+          <input type="checkbox" id="music" name="interest" value="music" />
+          <label for="music">excel</label>
+        </div>
+      </fieldset>
+<button>查询</button>
+  </body>
+  <script src="./renderer.js"></script>
+</html>
+
