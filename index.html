@@ -1,40 +1,67 @@
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <title>工具</title>
-  </head>
-  <body>
-    <div>
-        选择需要查询的文件夹路径
-        <button id="selectFile">选择文件夹</button>
-        <span> E:\tools\node_modules\.store\electron@24.1.2\node_modules\electron\dist\electron.exe</span>
-    </div>
-    <div>
-        选择需要输出结果的路径
-        <button id="selectFile">选择文件夹</button>        
-        <span> E:\tools\node_modules\.store\electron@24.1.2\node_modules\electron\dist\electron.exe</span>
-    </div>
-    <fieldset>
-        <legend>需要查询的格式类型</legend>
-        <div>
-          <input type="checkbox" id="coding" name="interest" value="coding" />
-          <label for="coding">pdf</label>
-        </div>
-        <div>
-          <input type="checkbox" id="music" name="interest" value="music" />
-          <label for="music">excel</label>
-        </div>
-      </fieldset>
-<button>查询</button>
-  </body>
-  <script src="./renderer.js"></script>
-</html>
 
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="Content-Security-Policy"
+		content="default-src 'self' ; script-src 'self' ; img-src data: w3.org/svg/2000 ;style-src 'self' 'unsafe-inline'"  />
+	<meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+	<title>工具</title>
+	<link href="./static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="./style/render.css" rel="stylesheet">
+
+	<script src="./static/bootstrap/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+	<main>
+		<div >
+			1.<span class="my-required">选择需要查询的文件夹路径</span>
+			<button id="queryFilepath" type="button" class="btn btn-primary btn-sm my-btn">选择文件夹</button>
+			<br>
+			<span id="queryFilepathInfo"> </span>
+		</div>
+		<hr>
+		<div>
+			2.<span class="my-required">选择需要输出结果的路径</span>
+			<button id="fileOutputPath" type="button" class="btn btn-primary btn-sm my-btn">选择路径</button>
+			<br>
+			<span id="fileOutputPathInfo"> </span>
+		</div>
+		<hr>
+		<div>
+			3.查询结果输出的文件名称(同名文件将会被覆盖)
+			<input type="text" class="form-control" id="fileOutputName" placeholder="查询结果">
+
+		</div>
+		<hr>
+		<div>
+			4.需要排除查询的格式类型(不支持后缀格式大小写混合模式的文件，如.PdF)
+			<div class="checkGroup" id="checkGroup">
+				<!-- <div class="form-check my-form-check">
+					<input class="form-check-input" type="checkbox" value="pdf" id="flexCheckDefault" checked>
+					<label class="form-check-label" for="flexCheckDefault">
+						pdf
+					</label>
+				</div>
+				<div class="form-check my-form-check">
+					<input class="form-check-input" type="checkbox" value="excel" id="flexCheckChecked">
+					<label class="form-check-label" for="flexCheckChecked">
+						excel
+					</label>
+				</div>				 -->
+			</div>
+
+		</div>
+		<hr>
+		<span>查询功能将会把隐藏文件查出，效果与cmd命令下执行dir命令一致</span>
+		<br>
+		<button type="button" class="btn btn-primary btn-sm my-btn" id="search">查询</button>
+		<span id="checkmsg" style="display: none;color: red;">请检查必填选项</span>
+
+	</main>
+
+</body>
+<script src="./renderer.js"></script>
+
+
+</html>

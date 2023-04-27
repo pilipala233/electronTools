@@ -1,0 +1,16 @@
+main{padding: 10px;}
+.my-btn{
+    width: 100px;
+}
+.checkGroup{
+    display: flex;
+}
+.my-form-check{
+    padding: 0 1.5em;
+}
+.my-required::before{
+    color: red;
+    content: "*";
+    /* position: absolute; */
+    /* margin-left: -15px; */
+}
