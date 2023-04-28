@@ -1,11 +1,16 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path')
 const { find } = require('./search')
+const WinState  = require('electron-win-state').default
 
+const winState = new WinState({ 
+	defaultWidth: 800,
+	defaultHeight: 600,
+	// other winState options, see below
+})
 const createWindow = () => {
 	const win = new BrowserWindow({
-		width: 800,
-		height: 600,
+		...winState.winOptions,
 		webPreferences: {
 			preload: path.join(__dirname, 'preload.js'),
 		},
@@ -26,7 +31,7 @@ const createWindow = () => {
 			)
 	}
 	)
-
+	winState.manage(win)
 
 }
 
