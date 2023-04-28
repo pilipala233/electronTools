@@ -19,27 +19,32 @@ const find = (filePath,outpullFilePath,noStatistics,resfilename) => {
       fileDisplay(filePath,noStatistics);
   
       if (resstr.length) {
-        //console.log(resstr)
-        // 创建一个可以写入的流，写入到文件 output.txt 中
-        var writerStream = fs.createWriteStream(outpullFilePath+'/'+ resfilename+'.txt');
-  
-        // 使用 utf8 编码写入数据
-        writerStream.write(resstr, 'UTF8');
-  
-        // 标记文件末尾
-        writerStream.end();
-  
-        // 处理流事件 --> finish、error
-        writerStream.on('finish', function () {
-          //alert("写入完成。")
-          console.log("写入完成。");
-          resolve(1);
-        });
-  
-        writerStream.on('error', function (err) {
-          console.log("错误", err.stack);
-          reject(0);
-        });
+        if(outpullFilePath){
+            // 创建一个可以写入的流，写入到文件 output.txt 中
+            var writerStream = fs.createWriteStream(outpullFilePath+'/'+ resfilename+'.txt');
+    
+            // 使用 utf8 编码写入数据
+            writerStream.write(resstr, 'UTF8');
+    
+            // 标记文件末尾
+            writerStream.end();
+    
+            // 处理流事件 --> finish、error
+            writerStream.on('finish', function () {
+            //alert("写入完成。")
+            console.log("写入完成。");
+            resolve(resstr);
+            });
+    
+            writerStream.on('error', function (err) {
+            console.log("错误", err.stack);
+            reject(0);
+            });
+        }else{
+            resolve(resstr);
+        }
+
+
       } else {
         console.log('执行完毕,没有匹配数据');
         resolve(0);

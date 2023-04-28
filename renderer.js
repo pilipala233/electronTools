@@ -10,6 +10,7 @@ const checkGroup = document.getElementById('checkGroup')
 
 const search = document.getElementById('search')
 const checkmsg = document.getElementById('checkmsg')
+const resTextarea = document.getElementById('resTextarea')
 
 
 const createCheckBox = () => {
@@ -27,7 +28,7 @@ const createCheckBox = () => {
 	checkGroup.innerHTML = textdom
 }
 const searchfn= ()=>{
-	if(!queryFilepathInfo.innerText||!fileOutputPathInfo.innerText){
+	if(!queryFilepathInfo.innerText){
 		checkmsg.style.display = ''
 	}else{
 		checkmsg.style.display = 'none'
@@ -43,10 +44,26 @@ const searchfn= ()=>{
 	}
 }
 window.electronAPI.notice((_event, value) => {
-	if(value==1){
-		alert('查询完成，已生成结果至目标地址')
+	if(value){
+		resTextarea.value = value
+		if(fileOutputPathInfo.innerText){
+			setTimeout(() => {
+				alert('查询完成，已生成结果至目标地址')
+			}, 0);
+			
+		}else{
+			setTimeout(() => {
+				alert('查询完成')
+			}, 0);
+			
+		}
+		
 	}else if(value==0){
-		alert('查询完成，但没有匹配数据')
+		resTextarea.value = value
+		setTimeout(() => {
+			alert('查询完成，但没有匹配数据')
+		}, 0);
+		
 	}else{
 		alert('查询失败')
 	}
